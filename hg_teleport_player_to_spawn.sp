@@ -2,6 +2,16 @@
 #include <sourcemod>
 #include <sdktools>
 
+#define PLUGIN_VERSION "1.0"
+public Plugin:myinfo =
+{
+	name 		= "[HG] Teleport to spawn",
+	author 		= "Unknown",
+	description = "Телепорт игроков на спавн под конец раунда",
+	version 	= PLUGIN_VERSION,
+	url 		= "https://github.com/Heyter/-CS-GO-Hunger-Games"
+}
+
 float g_fRoundStartTime;
 Handle g_hRoundTimerCvar = INVALID_HANDLE;
 Handle g_hFreezeTimeCvar = INVALID_HANDLE;
