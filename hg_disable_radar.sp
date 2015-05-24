@@ -5,7 +5,7 @@
 #define PLUGIN_NAME "[HG] Disable Radar"
 #define PLUGIN_AUTHOR "Hejter"
 #define PLUGIN_VERSION "1.0"
-#define PLUGIN_URL "hlmod.ru & excw.ru"
+#define PLUGIN_URL "https://github.com/Heyter/-CS-GO-Hunger-Games"
 
 new String:strGame[10];
 
