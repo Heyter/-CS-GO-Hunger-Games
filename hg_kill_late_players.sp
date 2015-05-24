@@ -2,7 +2,7 @@
 #include <sdktools>
 
 new bool:SpawnKiller = false;
-
+#define PLUGIN_URL "https://github.com/Heyter/-CS-GO-Hunger-Games"
 
 public Plugin:myinfo =
 {
@@ -10,6 +10,7 @@ public Plugin:myinfo =
     author = "Johnny",
     description = "Kills players who join late",
     version = "1.0",
+    url = PLUGIN_URL,
 }
 
 public OnPluginStart()
