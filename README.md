@@ -2,4 +2,4 @@
 Голодные игры
 
 Other plugins - Другие плагины
-https://github.com/AG-Headline/Hunger-Games-Beacon
+- https://github.com/AG-Headline/Hunger-Games-Beacon
