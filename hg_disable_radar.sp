@@ -1,21 +1,17 @@
-#include <sourcemod>
+#pragma semicolon 1
 
 #define HIDE_RADAR_CSGO 1<<12
 
-#define PLUGIN_NAME "[HG] Disable Radar"
-#define PLUGIN_AUTHOR "Hejter"
-#define PLUGIN_VERSION "1.0"
-#define PLUGIN_URL "https://github.com/Heyter/-CS-GO-Hunger-Games"
-
 new String:strGame[10];
 
-public Plugin:myinfo =
+public Plugin:myinfo = 
 {
-	name = PLUGIN_NAME,
-	author = PLUGIN_AUTHOR,
-	version = PLUGIN_VERSION,
-	url = PLUGIN_URL,
-};
+    name = "[HG] Disable Radar",
+    author = "Internet Bully, some random guy",
+    description = "Turns off Radar on spawn",
+	version     = "1.2.1",
+    url = "http://www.sourcemod.net/"
+}
 
 public OnPluginStart() 
 {
@@ -29,17 +25,21 @@ public OnPluginStart()
 public Player_Spawn(Handle:event, const String:name[], bool:dontBroadcast) 
 {
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
-	CreateTimer(0.0, RemoveRadar, client);
+	CreateTimer(0.0, RemoveRadar, GetClientUserId(client));
 }  
 
-public Action:RemoveRadar(Handle:timer, any:client) 
-{    
+public Action:RemoveRadar(Handle:timer, any:userid) 
+{
+	new client = GetClientOfUserId(userid);
+
+	if(client == 0) return;
+
 	if(StrContains(strGame, "csgo") != -1) SetEntProp(client, Prop_Send, "m_iHideHUD", GetEntProp(client, Prop_Send, "m_iHideHUD") | HIDE_RADAR_CSGO);
 	else if(StrContains(strGame, "cstrike") != -1) 
 		CSSHideRadar(client);
 } 
 
-public Event_PlayerBlind(Handle:event, const String:name[], bool:dontBroadcast)
+public Event_PlayerBlind(Handle:event, const String:name[], bool:dontBroadcast)  // from GoD-Tony's "Radar Config" https://forums.alliedmods.net/showthread.php?p=1471473
 {
 	new userid = GetEventInt(event, "userid");
 	new client = GetClientOfUserId(userid);
@@ -47,7 +47,7 @@ public Event_PlayerBlind(Handle:event, const String:name[], bool:dontBroadcast)
 	if (client && GetClientTeam(client) > 1)
 	{
 		new Float:fDuration = GetEntPropFloat(client, Prop_Send, "m_flFlashDuration");
-		CreateTimer(fDuration, RemoveRadar, client);
+		CreateTimer(fDuration, RemoveRadar, GetClientUserId(client));
 	}
 }
 
