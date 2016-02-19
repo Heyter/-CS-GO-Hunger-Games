@@ -9,9 +9,9 @@ int g_iGrenadeOffsets[] = {15, 17, 16, 14, 18, 17};
 public Plugin myinfo =
 {
 	name = "[HG:CSGO] Disarm Weapons",
-	author = "Hejter",
+	author = "White Wolf",
 	version = "0.2",
-	url = "hlmod.ru & excw.ru",
+	url = "hlmod.ru",
 };
 
 public void OnPluginStart()
