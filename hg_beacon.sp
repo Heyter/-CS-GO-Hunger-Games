@@ -5,7 +5,7 @@
 
 #define PLUGIN_NAME "[HG] Beacon"
 #define PLUGIN_AUTHOR "Hejter & johny01"
-#define PLUGIN_VERSION "1.0"
+#define PLUGIN_VERSION "1.1"
 #define PLUGIN_URL "https://github.com/Heyter/-CS-GO-Hunger-Games"
 
 new g_BeamSprite		= -1;
@@ -138,7 +138,7 @@ public Action:Timer_Beacon(Handle:timer, any:userid)
 		return Plugin_Stop;
 	}
 	
-	if (IsClientInGame(client) && IsPlayerAlive(client) && 0 < client <= MaxClients)
+	if(IsValidClient(client))
 	{
 		new Float:vec[3];
 		GetClientAbsOrigin(client, vec);
@@ -165,4 +165,13 @@ stock GetPlayerCount()
 		}
 	}
 	return players;
+}
+
+stock bool:IsValidClient(client)
+{
+	if(0 < client && client <= MaxClients && IsClientInGame(client) && IsPlayerAlive(client))
+	{
+		return true;
+	}
+	return false;
 }
